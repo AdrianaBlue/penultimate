@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NewsBoard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./pen.css">
+</head>
+<body>
+<div id="header">
+<h1>NEWS BOARD</h1>
+<h4>
+<p id="login">LOG IN</p>
+<p id="signup">SIGN UP</p>
+</h4>
+</div>
+
+
+
+<form id="datacontainer" method="post" action="/pen">
+
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+    <div id="input">
+
+        <input id="sometext" type="text" name="sometext" placeholder="sometext">
+        <input id="url" type="text" name="url" placeholder="url">
+
+
+    </div>
+    <button id="submit" type="submit" name="submit">submit</button>
+    </div>
+
+</form>
+
+<div id="links">
+    <ul>
+        {{#each links}}
+        <li>
+            <a id="alinks" href ='{{url}}'> {{sometext}} </a>{{timestamp}}
+            <a href ="item/{{id}}">comment</a>
+        </li>
+        {{/each}}
+
+    </ul>
+</div>
+
+<footer>
+    <div id="footer">
+    <a href ="https://www.google.de/intl/pl/policies/terms/regional.html"><p id="faq">FAQ</p></a>
+    <a href="http://www.trussardi.com/localize.asp?tskay=30875655&page=legal/privacypolicy&"><p id="privacy">Privacy Policy</p></a>
+    <a href="http://www.shiseidogroup.com/inquiry/?rt_bt=manu-inquiry"><p id="contact">Contact</p><a>
+    <a href="https://www.google.de/webhp?hl=pl&sa=X&ved=0ahUKEwiggrHShabRAhVKDMAKHUmwA4QQPAgD"><p id="search">Search</p></a>
+    <a href="http://www.trussardi.com/cms/legal/impressum.asp?tskay=30875655"><p id="impressum">Impressum</p></a>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=
+</body>
+</html>

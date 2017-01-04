@@ -1,0 +1,28 @@
+{
+  "name": "paprika-penultimate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "mocha": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdrianaBlue/penultimate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdrianaBlue/penultimate/issues"
+  },
+  "homepage": "https://github.com/AdrianaBlue/penultimate#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "chi": "0.0.10",
+    "mocha": "^3.2.0"
+  }
+}

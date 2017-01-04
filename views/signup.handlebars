@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<title> SIGN UP</title>
+<link rel="stylesheet" type="text/css" href="/pen.css">
+<ul>
+    {{#signup}}
+    <li>
+        {{firstname}} {{email}} {{password}}
+        {{/signup}}
+    </ul>
+
+    <form id="datacontainer" method="post">
+
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <div id="inputssignup">
+            <input id="first" type="text" name="firstName" placeholder="First Name">
+            <input id="email" type="text" name="email" placeholder="Email Address">
+            <input id="password" type="password" name="password" placeholder="password">
+        </div>
+<br>
+<br>
+        <button id="signup" type="submit" name="signup">sign up</button>
+    </form>
+
+    <p>If you are already a member, please log in <a href src="/login">LOG IN</a></p>
+
+    </html>

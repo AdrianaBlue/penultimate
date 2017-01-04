@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<title>LOG IN</title>
+<link rel="stylesheet" type="text/css" href="/pen.css">
+<ul>
+    {{#login}}
+    <li>
+        {{email}} {{password}}
+        {{/login}}
+    </ul>
+
+
+    <form id="datacontainer" method="post">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <div id="inputs">
+
+            <input id="email" type="text" name="email" placeholder="Email Address">
+            <input id="password" type="text" name="password" placeholder="password">
+        </div>
+        <button id="login" type="submit" name="/login">log in</button>
+
+    </form>
+</div>
+
+    </html>

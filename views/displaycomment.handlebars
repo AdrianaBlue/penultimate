@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<title>DISPLAY COMMENT</title>
+<link rel="stylesheet" type="text/css" href="/pen.css">
+
+<a id="alinks" href ='{{url}}'>{{sometext}}</a>
+
+<form id="datacontainer" method="post">
+
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+    <div id="commentinput">
+        <a href=""></a>
+        <input id="comment" type="text" name="comment" placeholder="comment">
+
+
+    </div>
+    <button id="submitcomment" type="submit" name="submit">submit</button>
+</div>
+
+</form>
+
+<div id="commentsspace">
+    <ul>
+        {{#each myData}}
+        <li>
+            <p id="placeforcomments">
+                {{this.comment}}
+            </p>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+
+
+</html>
