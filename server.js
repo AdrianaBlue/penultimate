@@ -53,18 +53,19 @@ app.post('/pen', function (req, res){
     });
 });
 app.get('/item/:id', function(req,res){    db.query(
-    `SELECT links.id AS links_id, comments.linksid AS comments_linksid, comments.comment AS comment, links.url AS url
-
+    `SELECT links.id AS links_id, comments.linksid AS comments_linksid, comments.comment AS comment, links.url AS url, links.sometext AS sometext
         FROM links
         JOIN comments
         ON links.id = comments.linksid
         WHERE links.id=$1;`,[req.params.id], function(err, results){
         if(!err){
-            console.log(results.rows);
+            var url = results.rows[0].url;
+            var sometext = results.rows[0].sometext;
+            console.log(results.rows[0].url);
 
             //  res.render('displaycomment', results.rows[0]);
 
-            res.render('displaycomment', {myData : results.rows} );
+            res.render('displaycomment', {myData : results.rows, url: url, sometext: sometext} );
         } else {
             console.log(err);
         }

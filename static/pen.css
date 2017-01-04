@@ -1,21 +1,44 @@
 
 body {
-    background-color: #b0b4b7;
+    background-color: #71819b;
 }
-
+#top{
+    position:relative;
+    display:block;
+    padding:5px;
+}
+#theworld{
+    display:inline;
+    z-index:1;
+}
+#thelink {
+    font-size: 22px;
+    color:#1c273a;
+}
 #header {
     display:inline-block;
+    position:relative;
+    z-index: 2;
 }
-h1{
-    float:left;
+h1{color:#d5e0f2;
     margin-left: 30px;
+}
+#logandsign{
+    display:inline-block;;
+    position: relative;
+    margin-top: 15px;
+    float:
 }
 #signup{
     float:right;
     padding: 5px;
     margin-right: 10px;
     margin-left:20px;
-
+}
+#input{
+position:relative;
+margin-top:10px;
+margin-bottom: 15px;
 
 }
 #login{
@@ -31,11 +54,14 @@ h1{
 
 }
 #alinks{
-    text-decoration: #2B547E;
+color: #1d3459;
+}
+#ct{
+    color:#1d3459;
 }
 #footer {
-    display:inline-block;
-    background-color: #607f96
+    background-color: #455b7c;
+    max-width: 100%;
 }
 #faq{
     float:left;
@@ -77,4 +103,8 @@ width:600px;
 }
 #comment{
     margin-top:20px;
+}
+.ins{
+    color:#132542;
+    display:inline-flex;
 }

@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NewsBoard</title>
+    <title>NIGHT ISSUES</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./pen.css">
 </head>
 <body>
+    <div id="top">
+    <div id="theworld">
+        <img src="theworld.jpg"  height="242" width="542">
+    </div>
+
 <div id="header">
-<h1>NEWS BOARD</h1>
-<h4>
+<h1>NIGHT ISSUES</h1>
+</div>
+<div id="container">
+<div id="logandsign">
+
 <p id="login">LOG IN</p>
 <p id="signup">SIGN UP</p>
-</h4>
 </div>
-
+</div>
 
 
 <form id="datacontainer" method="post" action="/pen">
@@ -31,13 +38,14 @@
     </div>
 
 </form>
+</div>
 
 <div id="links">
     <ul>
         {{#each links}}
         <li>
             <a id="alinks" href ='{{url}}'> {{sometext}} </a>{{timestamp}}
-            <a href ="item/{{id}}">comment</a>
+            <a  id="ct" href ="item/{{id}}">comment</a>
         </li>
         {{/each}}
 
@@ -46,11 +54,11 @@
 
 <footer>
     <div id="footer">
-    <a href ="https://www.google.de/intl/pl/policies/terms/regional.html"><p id="faq">FAQ</p></a>
-    <a href="http://www.trussardi.com/localize.asp?tskay=30875655&page=legal/privacypolicy&"><p id="privacy">Privacy Policy</p></a>
-    <a href="http://www.shiseidogroup.com/inquiry/?rt_bt=manu-inquiry"><p id="contact">Contact</p><a>
-    <a href="https://www.google.de/webhp?hl=pl&sa=X&ved=0ahUKEwiggrHShabRAhVKDMAKHUmwA4QQPAgD"><p id="search">Search</p></a>
-    <a href="http://www.trussardi.com/cms/legal/impressum.asp?tskay=30875655"><p id="impressum">Impressum</p></a>
+    <a class="ins" href ="https://www.google.de/intl/pl/policies/terms/regional.html"><p id="faq">FAQ</p></a>
+    <a class="ins" href="http://www.trussardi.com/localize.asp?tskay=30875655&page=legal/privacypolicy&"><p id="privacy">Privacy Policy</p></a>
+    <a class="ins" href="http://www.shiseidogroup.com/inquiry/?rt_bt=manu-inquiry"><p id="contact">Contact</p><a>
+    <a class="ins" href="https://www.google.de/webhp?hl=pl&sa=X&ved=0ahUKEwiggrHShabRAhVKDMAKHUmwA4QQPAgD"><p id="search">Search</p></a>
+    <a class="ins" href="http://www.trussardi.com/cms/legal/impressum.asp?tskay=30875655"><p id="impressum">Impressum</p></a>
 </div>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
