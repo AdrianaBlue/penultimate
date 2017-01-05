@@ -16,20 +16,31 @@
 
     </div>
     <button id="submitcomment" type="submit" name="submit">submit</button>
+    <a href="/pen">REVERT TO MAIN PAGE</a>
 </div>
 
 </form>
 
+
 <div id="commentsspace">
+
     <ul>
         {{#each myData}}
         <li>
+
             <p id="placeforcomments">
+                
+                <textarea id="textarea">
                 {{this.comment}}
+                    </textarea>
+                    <button id="reply" type="submit" name="submit">Reply</button>
             </p>
+
         </li>
         {{/each}}
+
     </ul>
+
 </div>
 
 

@@ -1,6 +1,6 @@
 DROP TABLE if exists links;
 DROP TABLE if exists comments;
-
+DROP TABLE if exists furthercomments;
 
 CREATE TABLE links (
     id SERIAL primary key,
@@ -26,6 +26,13 @@ INSERT INTO links (url, sometext) VALUES ('https://www.lynda.com/', 'Why not Lyn
 CREATE TABLE comments(
     id SERIAL primary key,
     linksid INTEGER,
+    timestamp TIMESTAMP default current_timestamp,
+    comment TEXT
+);
+
+CREATE TABLE furthercomments (
+    id SERIAL primary key,
+    linkid INTEGER,
     timestamp TIMESTAMP default current_timestamp,
     comment TEXT
 );

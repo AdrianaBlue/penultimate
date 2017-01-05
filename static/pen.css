@@ -108,3 +108,7 @@ width:600px;
     color:#132542;
     display:inline-flex;
 }
+#textarea{
+    width:560px;
+    height: 40px;
+}

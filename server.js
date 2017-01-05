@@ -33,9 +33,7 @@ app.get('/pen', function (req, res){
         if(err) {
             console.log(err);
         } else {
-            console.log("hereee");
             res.render('pen', {links:results.rows});
-            console.log(results.rows);
         }
     });
 });
@@ -54,20 +52,34 @@ app.post('/pen', function (req, res){
 });
 app.get('/item/:id', function(req,res){    db.query(
     `SELECT links.id AS links_id, comments.linksid AS comments_linksid, comments.comment AS comment, links.url AS url, links.sometext AS sometext
-        FROM links
-        JOIN comments
-        ON links.id = comments.linksid
-        WHERE links.id=$1;`,[req.params.id], function(err, results){
-        if(!err){
-            var url = results.rows[0].url;
-            var sometext = results.rows[0].sometext;
-            console.log(results.rows[0].url);
+    FROM links
+    INNER JOIN comments
+    ON links.id = comments.linksid
+    WHERE links.id=$1;`,[req.params.id], function(err, results){
 
-            //  res.render('displaycomment', results.rows[0]);
-
-            res.render('displaycomment', {myData : results.rows, url: url, sometext: sometext} );
+        if(results.rows.length===0){
+            console.log("no results");
+            db.query(`SELECT * FROM links WHERE id=$1;`,[req.params.id], function(err,results){
+                if(err) {
+                    console.log(err);
+                }else{
+                    console.log(results.rows);
+                    res.render('displaycomment');
+                }
+            });
         } else {
-            console.log(err);
+            if(!err){
+                console.log(results.rows);
+                var url = results.rows[0].url;
+                var sometext = results.rows[0].sometext;
+                console.log(results.rows[0].url);
+
+                //  res.render('displaycomment', results.rows[0]);
+
+                res.render('displaycomment', {myData : results.rows, url: url, sometext: sometext} );
+            } else {
+                console.log(err);
+            }
         }
     });
 });
@@ -80,9 +92,9 @@ app.post('/item/:id', function(req,res){
         if(!err){
             //console.log("did it wokr?");
             //console.log(results);
-             //res.redirect('/item?id=', );
-             //res.render('displaycomment', {myData:results});
-             res.redirect('/item/'+ req.params.id);
+            //res.redirect('/item?id=', );
+            //res.render('displaycomment', {myData:results});
+            res.redirect('/item/'+ req.params.id);
 
         } else{
             console.log(err);
