@@ -27,6 +27,7 @@ CREATE TABLE comments(
     id SERIAL primary key,
     linksid INTEGER,
     timestamp TIMESTAMP default current_timestamp,
+    parentid INTEGER,
     comment TEXT
 );
 

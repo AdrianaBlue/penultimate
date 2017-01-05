@@ -109,6 +109,10 @@ width:600px;
     display:inline-flex;
 }
 #textarea{
+
     width:560px;
     height: 40px;
+}
+#supercontainer{
+        border-style: red, solid, 5px;
 }

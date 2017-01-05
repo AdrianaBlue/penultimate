@@ -12,12 +12,10 @@
     <div id="commentinput">
         <a href=""></a>
         <input id="comment" type="text" name="comment" placeholder="comment">
-
-
     </div>
-    <button id="submitcomment" type="submit" name="submit">submit</button>
+
+    <button id="submitcomment" type="submit">submit</button>
     <a href="/pen">REVERT TO MAIN PAGE</a>
-</div>
 
 </form>
 
@@ -28,18 +26,30 @@
         {{#each myData}}
         <li>
 
-            <p id="placeforcomments">
-                
-                <textarea id="textarea">
-                {{this.comment}}
-                    </textarea>
-                    <button id="reply" type="submit" name="submit">Reply</button>
-            </p>
+
+                    <p id="placeforcomments">
+
+                            {{this.comment}}
+                                <form id="datacontainer" method="post">
+                            <input id="comment" type="text" name="comment">
+                        </input>
+                        <input type="hidden" name="parentcommentid" value='{{id}}'>
+                    </input>
+                        <button id="reply" type="submit">Reply</button>
+                    </form>
+
+
+
 
         </li>
-        {{/each}}
+        <div id="anothercomment"
+        <a href ="item/{{id}}" id="pfac">p</a>
+    </div>
 
-    </ul>
+    {{/each}}
+
+
+</ul>
 
 </div>
 

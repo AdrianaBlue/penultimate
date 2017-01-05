@@ -51,7 +51,7 @@ app.post('/pen', function (req, res){
     });
 });
 app.get('/item/:id', function(req,res){    db.query(
-    `SELECT links.id AS links_id, comments.linksid AS comments_linksid, comments.comment AS comment, links.url AS url, links.sometext AS sometext
+    `SELECT links.id AS links_id, comments.linksid AS comments_linksid, comments.comment AS comment, links.url AS url, links.sometext AS sometext, comments.id 
     FROM links
     INNER JOIN comments
     ON links.id = comments.linksid
@@ -96,7 +96,7 @@ app.post('/item/:id', function(req,res){
             //res.render('displaycomment', {myData:results});
             res.redirect('/item/'+ req.params.id);
 
-        } else{
+        } else {
             console.log(err);
         }
     });
