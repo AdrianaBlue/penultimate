@@ -25,26 +25,16 @@
     <ul>
         {{#each myData}}
         <li>
-
-
-                    <p id="placeforcomments">
-
-                            {{this.comment}}
-                                <form id="datacontainer" method="post">
-                            <input id="comment" type="text" name="comment">
-                        </input>
-                        <input type="hidden" name="parentcommentid" value='{{id}}'>
-                    </input>
-                        <button id="reply" type="submit">Reply</button>
-                    </form>
-
-
-
-
+            <p id="placeforcomments">{{this.comment}}</p>
+            <form id="datacontainer" method="post">
+                <input id="comment" type="text" name="comment">
+                <input type="hidden" name="parentcommentid" value='{{id}}'>
+                <button id="reply" type="submit">Reply</button>
+            </form>
         </li>
         <div id="anothercomment"
-        <a href ="item/{{id}}" id="pfac">p</a>
-    </div>
+            <a href ="item/{{id}}" id="pfac">p</a>
+        </div>
 
     {{/each}}
 

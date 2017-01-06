@@ -51,7 +51,7 @@ app.post('/pen', function (req, res){
     });
 });
 app.get('/item/:id', function(req,res){    db.query(
-    `SELECT links.id AS links_id, comments.linksid AS comments_linksid, comments.comment AS comment, links.url AS url, links.sometext AS sometext, comments.id 
+    `SELECT links.id AS links_id, comments.linksid AS comments_linksid, comments.comment AS comment, links.url AS url, links.sometext AS sometext, comments.id
     FROM links
     INNER JOIN comments
     ON links.id = comments.linksid
@@ -69,10 +69,10 @@ app.get('/item/:id', function(req,res){    db.query(
             });
         } else {
             if(!err){
-                console.log(results.rows);
+                // console.log(results.rows);
                 var url = results.rows[0].url;
                 var sometext = results.rows[0].sometext;
-                console.log(results.rows[0].url);
+                // console.log(results.rows[0].url);
 
                 //  res.render('displaycomment', results.rows[0]);
 
@@ -85,12 +85,13 @@ app.get('/item/:id', function(req,res){    db.query(
 });
 app.post('/item/:id', function(req,res){
 
-    console.log(req.query);
     var comment=req.body.comment;
     var linksid=req.params.id;
-    db.query('INSERT INTO comments (linksid, comment) VALUES($1,$2)', [linksid,comment], function(err,results){
+    var parentid=req.body.parentcommentid;
+    console.log(parentid);
+    db.query('INSERT INTO comments (linksid, comment, parentid) VALUES($1,$2,$3)', [linksid,comment, parentid], function(err,results){
         if(!err){
-            //console.log("did it wokr?");
+            //console.log("did it work?");
             //console.log(results);
             //res.redirect('/item?id=', );
             //res.render('displaycomment', {myData:results});

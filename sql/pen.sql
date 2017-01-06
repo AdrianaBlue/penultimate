@@ -30,10 +30,3 @@ CREATE TABLE comments(
     parentid INTEGER,
     comment TEXT
 );
-
-CREATE TABLE furthercomments (
-    id SERIAL primary key,
-    linkid INTEGER,
-    timestamp TIMESTAMP default current_timestamp,
-    comment TEXT
-);
