@@ -51,7 +51,8 @@ app.post('/pen', function (req, res){
     });
 });
 app.get('/item/:id', function(req,res){    db.query(
-    `SELECT links.id AS links_id, comments.linksid AS comments_linksid, comments.comment AS comment, links.url AS url, links.sometext AS sometext, comments.id
+    `SELECT links.id AS links_id, comments.linksid AS comments_linksid, comments.comment AS comment, links.url AS url,
+    links.sometext AS sometext, comments.id AS comments_id, comments.parentid AS parentid
     FROM links
     INNER JOIN comments
     ON links.id = comments.linksid
@@ -63,18 +64,19 @@ app.get('/item/:id', function(req,res){    db.query(
                 if(err) {
                     console.log(err);
                 }else{
+
                     console.log(results.rows);
-                    res.render('displaycomment');
+                    console.log('check the names of the things');// log res. plus spr imiona tych rzeczy .
+                    res.render('displaycomment', {myData: results.rows, url: url, sometext: sometext});
                 }
             });
         } else {
             if(!err){
-                // console.log(results.rows);
+                console.log(results.rows);
+
                 var url = results.rows[0].url;
                 var sometext = results.rows[0].sometext;
-                // console.log(results.rows[0].url);
 
-                //  res.render('displaycomment', results.rows[0]);
 
                 res.render('displaycomment', {myData : results.rows, url: url, sometext: sometext} );
             } else {
@@ -87,7 +89,15 @@ app.post('/item/:id', function(req,res){
 
     var comment=req.body.comment;
     var linksid=req.params.id;
-    var parentid=req.body.parentcommentid;
+    var parentid;
+    if(req.body.parentcommentid===undefined){
+        parentid=null;
+    } else {
+        parentid=req.body.parentcommentid;
+    }
+
+
+    console.log("this is the parentid");
     console.log(parentid);
     db.query('INSERT INTO comments (linksid, comment, parentid) VALUES($1,$2,$3)', [linksid,comment, parentid], function(err,results){
         if(!err){
@@ -95,7 +105,7 @@ app.post('/item/:id', function(req,res){
             //console.log(results);
             //res.redirect('/item?id=', );
             //res.render('displaycomment', {myData:results});
-            res.redirect('/item/'+ req.params.id);
+            //res.redirect('/item/'+ req.params.id);
 
         } else {
             console.log(err);
@@ -103,5 +113,31 @@ app.post('/item/:id', function(req,res){
     });
 });
 
+app.post('/item/:comments_id/subcomment', function(req,res){
+    var comment=req.body.comment;
+    // console.log(comment);
+    // console.log(req.body.parentcommentid);
+    // write an if statement that, if the comment does not have a parentid, set its parentcommentid to null
+    // also need linksid
+    var linksid = req.body.linksid;
+    // console.log(req.body.parentcommentid);
+    // console.log("that was for checking the perrentcommentid");
+    console.log(linksid);
+    console.log("that was for checking linksid");
+    // FROM MATT - along with the query you currently have, you need to also insert the linksid and then
+    db.query(`INSERT INTO comments (comment, linksid ,parentid) VALUES ($1,$2,$3)`, [comment,linksid, req.body.parentcommentid], function(err, results){
+        if(!err){
+            console.log(results.rows);
+
+            res.redirect('/item/'+linksid);
+                //TO POSTGRES/GIVE ME BACK THE DATA FROM comments
+            // res.render('displaycomment', {myData:results.rows});
+        } else{
+            console.log(err);
+                console.log("is this one????");
+        }
+    });
+    // db/insert newcomment/id of the comment and id of the parent comment (commentid=subcomment parent's id) into comments
+});
 
 app.listen(8080);

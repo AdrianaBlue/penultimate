@@ -1,6 +1,5 @@
 DROP TABLE if exists links;
 DROP TABLE if exists comments;
-DROP TABLE if exists furthercomments;
 
 CREATE TABLE links (
     id SERIAL primary key,

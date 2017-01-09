@@ -103,6 +103,7 @@ width:600px;
 }
 #comment{
     margin-top:20px;
+    height:25px;
 }
 .ins{
     color:#132542;
@@ -115,4 +116,7 @@ width:600px;
 }
 #supercontainer{
         border-style: red, solid, 5px;
+}
+#revert{
+    color:#1b2f4f;
 }

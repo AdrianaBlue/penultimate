@@ -6,17 +6,13 @@
 <a id="thelink" href ='{{url}}'>{{sometext}}</a>
 
 <form id="datacontainer" method="post">
-
     <input type="hidden" name="_csrf" value="{{csrfToken}}">
-
     <div id="commentinput">
         <a href=""></a>
         <input id="comment" type="text" name="comment" placeholder="comment">
     </div>
-
     <button id="submitcomment" type="submit">submit</button>
-    <a href="/pen">REVERT TO MAIN PAGE</a>
-
+    <a href="/pen" id="revert">REVERT TO MAIN PAGE</a>
 </form>
 
 
@@ -26,14 +22,16 @@
         {{#each myData}}
         <li>
             <p id="placeforcomments">{{this.comment}}</p>
-            <form id="datacontainer" method="post">
+            <h1>the links id is {{this.comments_linksid}}</h1>
+            <form action="/item/{{this.comments_id}}/subcomment"  id="datacontainer" method="post">
                 <input id="comment" type="text" name="comment">
-                <input type="hidden" name="parentcommentid" value='{{id}}'>
+                <input type="hidden" name="parentcommentid" value='{{this.comments_id}}'>
+                <input type="hidden" name="linksid" value='{{this.comments_linksid}}'>
                 <button id="reply" type="submit">Reply</button>
             </form>
         </li>
         <div id="anothercomment"
-            <a href ="item/{{id}}" id="pfac">p</a>
+            <a href ="item/{{id}}" id="pfac"></a>
         </div>
 
     {{/each}}
