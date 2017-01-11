@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <title>DISPLAY COMMENT</title>
-<link rel="stylesheet" type="text/css" href="/pen.css">
+<link rel="stylesheet" type="text/css" href="/static/pen.css">
 
 <a id="thelink" href ='{{url}}'>{{sometext}}</a>
 
@@ -25,14 +25,17 @@
             <h1>the links id is {{this.comments_linksid}}</h1>
             <form action="/item/{{this.comments_id}}/subcomment"  id="datacontainer" method="post">
                 <input id="comment" type="text" name="comment">
-                <input type="hidden" name="parentcommentid" value='{{this.comments_id}}'>
-                <input type="hidden" name="linksid" value='{{this.comments_linksid}}'>
+                <input type="hidden" id="thecommentsid" name="parentcommentid" value='{{this.comments_id}}'>
+                <input type="hidden" id="thecommentslinksid" name="linksid" value='{{this.comments_linksid}}'>
                 <button id="reply" type="submit">Reply</button>
+            </form>
+            <form method="get" >
+                <button id="expand" type="button">Expand</button>
             </form>
         </li>
         <div id="anothercomment"
-            <a href ="item/{{id}}" id="pfac"></a>
-        </div>
+        <a href="http://localhost:8080/item/{{id}}" id="pfac"></a>
+    </div>
 
     {{/each}}
 
@@ -40,6 +43,11 @@
 </ul>
 
 </div>
+
+<div class="children"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="/static/browser.js"></script>
 
 
 </html>
