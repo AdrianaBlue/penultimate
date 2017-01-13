@@ -40,7 +40,6 @@ app.get('/pen', function (req, res){
 app.post('/pen', function (req, res){
     var url = req.body.url;
     var sometext = req.body.sometext;
-    console.log(url);
     db.query('INSERT INTO links ( url, sometext) VALUES ($1, $2)', [url, sometext], function(err, results){
         if (!err){
             res.redirect('/pen');
@@ -65,7 +64,7 @@ app.get('/item/:id', function(req,res){
         INNER JOIN comments
         ON links.id = comments.linksid
         WHERE links.id=$1 AND comments.parentid IS NULL;`,[req.params.id], function(err, results){
-            console.log(results.rows);
+            // console.log(results.rows);
             //to make a condition if it ajax res.rend(results.json)
             if(results.rows.length==0){
                 //console.log("no results");
@@ -99,11 +98,14 @@ app.get('/item/:id', function(req,res){
     //res.json()
 app.get('/displayingcommentfamily/item', function(req,res){
     //console.log("i am checking req.query");
-    console.log(req.query);
+    // console.log(req.query);
 
     //console.log(req.params.id);
     //console.log("i am checking req.params.id");
+    console.log(req.query.id);
+    console.log(req.query.parentid);
     db.query(`SELECT * FROM comments
+
         WHERE comments.linksid=$1 AND comments.parentid=$2;`, [req.query.id, req.query.parentid], function(err, results){
             // [req.params.id,req.query.id]
             if(err) {
@@ -129,8 +131,8 @@ app.post('/item/:id', function(req,res){
     }
 
 
-    console.log("this is the parentid");
-    console.log(parentid);
+    // console.log("this is the parentid");
+    // console.log(parentid);
     db.query('INSERT INTO comments (linksid, comment, parentid) VALUES($1,$2,$3)', [linksid,comment, parentid], function(err,results){
         if(!err){
                 //console.log("did it work?");
@@ -154,7 +156,6 @@ app.post('/item/:comments_id/subcomment', function(req,res){
     db.query(`INSERT INTO comments (comment, linksid ,parentid) VALUES ($1,$2,$3)`, [comment,linksid, req.body.parentcommentid], function(err, results){
         if(!err){
             console.log(results.rows);
-
             res.redirect('/item/'+linksid);
 
                 //TO POSTGRES/GIVE ME BACK THE DATA FROM comments

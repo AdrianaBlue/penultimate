@@ -1,3 +1,5 @@
+
+
 // $.ajax({
 //     url: '/item/' + thecommentslinksid,
 //     method: 'POST',
@@ -8,18 +10,46 @@
 //         console.log(data);
 //     }
 // });
+var thecommentslinksid= $('#thecommentslinksid').val();
+console.log(thecommentslinksid);
 
-$('#expand').click(function(){
+
+$('.expand').click(function(){
+
+    var parentid=$(this).attr("name");
+    // });
+
+    console.log('parentid');
     $.ajax({
         url: '/displayingcommentfamily/item?id='+thecommentslinksid + "&parentid="+parentid,
-        //url: '/displayingcommentfamily/item?id='+ $('#thecommentsid').serlialize() +  $('#thecommentslinksid').serlialize()
-        //url: '/displayingcommentfamily/item?id='+ parentid= + & + thecommentslinksid=,
-        //"/item/"+ thecommentslinksid,
+
         method:'GET',
         success: function(result){
             console.log(result);
 
-        //     $(".children").JSON(result);
+            // $('#'+ parentid).html(result.myData[0].comment);
+
+            //     $(".children").JSON(result);
+            //var i;
+            //var result="";
+            // for (i=0; i< result.myData.comment.length; i++){
+                //result+=i; wrong because it is adding the "i "to results
+                // var arr=result.myData.comment;
+                // arr.forEach(function(comment){
+                //     console.log(comment);
+                // });
+                var html="";
+                for(var i =0; i< result.myData.length ; i++){
+                    html+=result.myData[i].comment;
+                    //console.log(result.myData[i].comment);
+                }
+
+            $('#'+ parentid).html(html);
+
+
+
+
+
         },
         error: function (error){
             console.log(error);
@@ -27,27 +57,6 @@ $('#expand').click(function(){
     });
 });
 
-
-
-//make a button to make ajax request
-//    WHERE links.id=$1 AND comments.parentid IS NULL;
-//which asks db for linksid and parentsid /which are comments-childcomments and the browser needs response
-//send back as json ....
-
-var thecommentslinksid= $('#thecommentslinksid').val();
-console.log(thecommentslinksid);
-var parentid =$('#thecommentsid').val();
-//first is to get the value of the id of the input in displaycomment.handlebars
-
-// var childid=
-// var parentid=
-// // $( '#reply' ).click(function() {
-// //     $('#commentslinksid').prop('type','text');
-// // });
-// //
-//
-// $( "#reply" ).click(function() {
-//     $( "#children" ).show( "slow", function() {
-//         // Animation complete.
-//     });
-// });
+//rozpisac handlebars
+//var html=Handlebars.template.commentslist(result)
+//for in loop
